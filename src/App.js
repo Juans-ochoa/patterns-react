@@ -10,7 +10,12 @@ const RightHandComponent = () => {
 function App() {
   return (
     <>
-      <SplitScreen left={LeftHandComponent} right={RightHandComponent} />
+      <SplitScreen
+        left={LeftHandComponent}
+        right={RightHandComponent}
+        leftWeight={1}
+        rightWeight={4}
+      />
     </>
   );
 }
