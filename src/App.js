@@ -1,5 +1,8 @@
+import { NumberedList } from "./NumberedList";
 import { LargePersonListItem } from "./people/LargePersonListItem";
 import { SmallPersonListItem } from "./people/SmallPersonListItem";
+import { LargeProductListItem } from "./products/LargeProductListItem";
+import { SmallProductListItem } from "./products/SmallProductListItem";
 import { RegularList } from "./RegularList";
 
 const people = [
@@ -52,10 +55,20 @@ function App() {
         sourceName='person'
         ItemComponent={SmallPersonListItem}
       />
-      <RegularList
+      <NumberedList
         items={people}
         sourceName='person'
         ItemComponent={LargePersonListItem}
+      />
+      <RegularList
+        items={products}
+        sourceName='product'
+        ItemComponent={SmallProductListItem}
+      />
+      <NumberedList
+        items={products}
+        sourceName='product'
+        ItemComponent={LargeProductListItem}
       />
     </>
   );
