@@ -1,12 +1,16 @@
-import { CurrentUserLoader } from "./CurrentUserLoader";
 import { UserInfo } from "./UserInfo";
+import { UserLoader } from "./UserLoader";
+
+const usersId = ["123", "234", "345"];
 
 function App() {
   return (
     <>
-      <CurrentUserLoader>
-        <UserInfo />
-      </CurrentUserLoader>
+      {usersId.map((userId) => (
+        <UserLoader key={userId} userId={userId}>
+          <UserInfo />
+        </UserLoader>
+      ))}
     </>
   );
 }
