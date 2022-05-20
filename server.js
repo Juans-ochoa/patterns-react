@@ -5,49 +5,50 @@ const app = express();
 app.use(express.json());
 
 let currentUser = {
-    name: "Jong Deep",
+  name: "John Doe",
+  age: 54,
+  hairColor: "brown",
+  hobbies: ["swimming", "bicycling", "video games"],
+};
+
+let users = [
+  {
+    name: "John Doe",
     age: 54,
-    hairColor: "Black",
-    hobbies: ["Swimming", "Bicycling", "Video games"],
+    hairColor: "brown",
+    hobbies: ["swimming", "bicycling", "video games"],
   },
-  users = [
-    {
-      name: "Jong Deep",
-      age: 54,
-      hairColor: "brown",
-      hobbies: ["Swimming", "Bicycling", "Video games"],
-    },
-    {
-      name: "Brenda Smith",
-      age: 33,
-      hairColor: "brown",
-      hobbies: ["golf", "mathematics"],
-    },
-    {
-      name: "Jane Garcia",
-      age: 27,
-      hairColor: "blonde",
-      hobbies: ["biologi", "medicine", "gymnastics"],
-    },
-  ];
+  {
+    name: "Brenda Smith",
+    age: 33,
+    hairColor: "black",
+    hobbies: ["golf", "mathematics"],
+  },
+  {
+    name: "Jane Garcia",
+    age: 27,
+    hairColor: "blonde",
+    hobbies: ["biology", "medicine", "gymnastics"],
+  },
+];
 
 const products = [
   {
-    name: "Flat-Screen Tv",
+    name: "Flat-Screen TV",
     price: "$300",
-    description: "Hege LCD screen, great deal",
+    description: "Huge LCD screen, a great deal",
     rating: 4.5,
   },
   {
     name: "Basketball",
-    price: "10$",
+    price: "$10",
     description: "Just like the pros use",
     rating: 3.8,
   },
   {
     name: "Running Shoes",
     price: "$120",
-    description: "State-of-the-art technology for the optimus",
+    description: "State-of-the-art technology for optimum running",
     rating: 4.2,
   },
 ];
@@ -58,23 +59,26 @@ app.get("/current-user", (req, res) => {
 
 app.get("/users/:id", (req, res) => {
   const { id } = req.params;
+
   res.json(users.find((user) => user.id === id));
 });
 
 app.post("/users/:id", (req, res) => {
-  const { id } = req.params,
-    { user: updateUser } = req.body;
+  const { id } = req.params;
+  const { user: updatedUser } = req.body;
 
-  // users = users.map((user) => user.id === id ? updateUser : )
+  users = users.map((user) => (user.id === id ? updatedUser : user));
+
   res.json(users.find((user) => user.id === id));
 });
 
-app.get("/users/", (req, res) => {
+app.get("/users", (req, res) => {
   res.json(users);
 });
 
 app.get("/products/:id", (req, res) => {
   const { id } = req.params;
+
   res.json(products.find((product) => product.id === id));
 });
 
@@ -83,5 +87,5 @@ app.get("/products", (req, res) => {
 });
 
 app.listen(8080, () => {
-  console.log("Server is listening in port 8080");
+  console.log("Server is listening on port 8080");
 });
