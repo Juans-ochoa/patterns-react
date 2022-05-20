@@ -1,16 +1,16 @@
+import { ProductInfo } from "./ProductInfo";
+import { ResourceLoader } from "./ResourceLoader";
 import { UserInfo } from "./UserInfo";
-import { UserLoader } from "./UserLoader";
-
-const usersId = ["123", "234", "345"];
 
 function App() {
   return (
     <>
-      {usersId.map((userId) => (
-        <UserLoader key={userId} userId={userId}>
-          <UserInfo />
-        </UserLoader>
-      ))}
+      <ResourceLoader resourceUrl="/users/123" resourceName="user">
+        <UserInfo />
+      </ResourceLoader>
+      <ResourceLoader resourceUrl="/products/1234" resourceName="product">
+        <ProductInfo />
+      </ResourceLoader>
     </>
   );
 }
