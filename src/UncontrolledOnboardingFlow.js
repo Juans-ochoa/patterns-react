@@ -4,7 +4,23 @@ export const UncontrolledOnboardingFlow = ({ children, onFinish }) => {
   const [onboardingData, setOnboardingData] = useState({});
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const goToNext = () => setCurrentIndex(currentIndex + 1);
+  const goToNext = (stepData) => {
+    const nextIndex = currentIndex + 1,
+      updateData = {
+        ...onboardingData,
+        ...stepData,
+      };
+
+    console.log(updateData);
+
+    if (nextIndex < children.length) {
+      setCurrentIndex(nextIndex);
+    } else {
+      onFinish(updateData);
+    }
+
+    setOnboardingData(updateData);
+  };
 
   const currentChild = React.Children.toArray(children)[currentIndex];
 
