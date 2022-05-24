@@ -1,13 +1,5 @@
 function App() {
-  return (
-    <div>
-      <header>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
-  );
+  return <h1>Here you code</h1>;
 }
 
 export default App;
