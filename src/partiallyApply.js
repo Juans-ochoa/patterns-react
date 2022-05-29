@@ -1,3 +1,7 @@
+const partiallyApply = (Component, partialsProps) => {
+  return (props) => <Component {...partialsProps} {...props} />;
+};
+
 export const Button = ({ text, size, color, ...props }) => {
   return (
     <button
@@ -13,10 +17,8 @@ export const Button = ({ text, size, color, ...props }) => {
   );
 };
 
-export const DangerButton = (props) => {
-  return <Button color="red" {...props} />;
-};
-
-export const BigSuccessButton = (props) => {
-  return <Button color="green" {...props} />;
-};
+export const DangerButton = partiallyApply(Button, { color: "red" });
+export const BigSuccessButton = partiallyApply(Button, {
+  color: "green",
+  size: "large",
+});
