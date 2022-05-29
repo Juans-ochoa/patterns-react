@@ -1,5 +1,7 @@
+import { UserInfo } from "./UserInfo";
+
 function App() {
-  return <h1>Here you code</h1>;
+  return <UserInfo />;
 }
 
 export default App;
