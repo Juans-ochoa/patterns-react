@@ -1,11 +1,23 @@
-import { useResource } from "./useResource";
+import axios from "axios";
+import { useDataSource } from "./useDataSource";
+
+const serverResource = (resourceUrl) => async () => {
+  const response = await axios.get(resourceUrl);
+  return response.data;
+};
+
+const localStorageResource = (key) => {
+  return localStorage.getItem(key);
+};
 
 export const UserInfo = ({ userId }) => {
-  const user = useResource(`/users/${userId}`),
+  const user = useDataSource(serverResource(`/users/${userId}`)),
+    message = localStorageResource("message"),
     { name, age, hairColor, hobbies } = user || {};
 
   return user ? (
     <>
+      <h1>{message || ""}</h1>
       <h3>{name}</h3>
       <p>Age: {age} years</p>
       <p>Hair Color: {hairColor}</p>
